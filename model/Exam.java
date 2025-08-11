@@ -1,3 +1,6 @@
+import java..util.ArrayList;
+import exceptions.*;
+
 class Exam{
 	private String examType;
 	private ArrayList<Question> questions;
@@ -71,5 +74,11 @@ class Exam{
 			System.out.println("Error: time must be > 0");
 		}
 	}
+
+
+	public void geoQuestions(){
+		String[] 
+	}
+
 
 }
