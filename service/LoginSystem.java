@@ -1,33 +1,27 @@
 package service;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
 import model.User;
 import exceptions.*;
 public class LoginSystem{
 	
-	Map<String, User> userList;
+	public static User validateUserName(List<User> users, String userName){
 	
-	public LoginSystem(){
-	
-		userList = new HashMap<>(); 
-		
-		userList.put("juanF", new User("juanF","1234","student"));
-		userList.put("marioS", new User("marioS","pass","student"));
-		userList.put("ludC", new User("ludC","0000","student"));
-	}
-	
-	public User validateLogin (String userName, String password){
-	
-		User user = userList.get(userName);    
+		for(User u : users){
+			if(u.getUserName().equals(userName)){
+				return u;
+			}
+		}
+		throw new UserNotFoundException("Username not found");
+		}
 		 
-        if (user == null) {
-            throw new UserNotFoundException("Username not found");
-        }
-        if (!user.getPassword().equals(password)) {
-            throw new InvalidPasswordException("Password is incorrect");
-        }
-        return user;
+	public static void validatePassword(User user, String password){ 
+
+		if(!user.getPassword().equals(password)){
+			throw new InvalidPasswordException("Incorrect password");
+		}
+	
 	
 	}
-
+	
 }
+

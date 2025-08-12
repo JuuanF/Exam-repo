@@ -1,34 +1,30 @@
 import exceptions.*;
 import model.User;
 import service.LoginSystem;
-import java.util.Scanner;
-
+import java.util.List;
+import data.UserData;
+import service.Initialize;
 class Main{
 	public static void main(String[] args){
-	
-		LoginSystem attempt = new LoginSystem();
-		 Scanner in = new Scanner(System.in);
-		 
 
-        System.out.println("=== Online Exam - LOGIN ===");
-		int shots = 3;
-        while (true) {
+		List<User> userList = UserData.getUsers();
+		Initialize input = new Initialize();
+		
+		System.out.println("=== Online Exam - LOGIN ===");
+		try{
+			String userName = input.askUserName();
+			User user = LoginSystem.validateUserName(userList, userName);
+			String password = input.askpassword();
+			LoginSystem.validatePassword (user, password);
 			
-            System.out.print("Introduce Username: ");
-            String user = in.nextLine();
-            System.out.print("Introduce Password: ");
-            String pwd  = in.nextLine();
-
-            try {
-                User currentUser = attempt.validateLogin(user, pwd);
-                System.out.println("Login successful. Welcome, " + currentUser.getUserName());
-                break;   // login OK, move on
-            } catch (UserNotFoundException | InvalidPasswordException e) {
-                System.out.println(e.getMessage());
-				break;
-            }
-			
-        }
+			if(user.getType().equalsIgnoreCase("Student")){
+				System.out.println("Welcome, exam list available");
+			}else if(user.getType().equalsIgnoreCase("Manager")){
+				System.out.println("Welcome, you can create exams");
+			}
+		}catch(UserNotFoundException | InvalidPasswordException e){
+			System.out.println("Error " + e.getMessage());
+		}
 		
 	
 	}
