@@ -1,7 +1,9 @@
 package service;
 import model.User;
 import java.util.Scanner;
-public class Initialize{
+public class Initialize{ //pertenece a loginSystem
+
+// load users, exams, questions, menu
 
 		private Scanner scanner = new Scanner(System.in);
 

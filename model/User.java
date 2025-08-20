@@ -1,7 +1,7 @@
 package model;
 public class User{
-	private int id = 1;
-	private static int nextId;
+	private static int id;
+
 	private String userName;
 	private String password;
 	private String type; // use later for Exam managers, type
@@ -11,9 +11,7 @@ public class User{
 		this.password = password;
 		this.type = type;
 		
-		id = nextId;
-		nextId++;
-		
+		id++;
 	}
 	
 	public String getUserName(){
