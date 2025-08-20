@@ -15,40 +15,9 @@ class Exam{
 		this.questions = new ArrayList<>();
 	}
 
-	/*
-	public void addQuestion (Question question){
-		if(questions.size() < 5){}
-			questions.add(question);
-			System.out.println("Question added. Total " + questions.size() + "/5");
-	} else{
-		System.out.println("Error: already has 5 questions");
-	}
-	*/
-
-
-	public Question getQuestion(int indx){
-		if(indx >= 0 && indx < questions.size()){
-			return questions.get(indx);
-		} else {
-			System.out.println("Error: Invalid question index");
-			return null;
-		}
-	}
-
 	public boolean isComplete(){
 		return questions.size == 5;
 
-	}
-
-	public int calculateScore(int[] userAnswer){
-		int score = 0;
-
-		for(int i =; i< questions.size(); i++){
-			if(questions.get(i).isCorrect(userAnswer[i])){
-				aciertos++;
-			}
-		}
-	return score;
 	}
 
 	public String getexamType(){
@@ -74,11 +43,5 @@ class Exam{
 			System.out.println("Error: time must be > 0");
 		}
 	}
-
-
-	public void geoQuestions(){
-		String[] 
-	}
-
 
 }
